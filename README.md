@@ -133,6 +133,27 @@ An adapter that isn't built on this machine yet is a documented **stub**: its `c
 `NotImplemented`, and the core surfaces an honest lane notice instead of data. standup keeps
 "nothing happened" and "not built here yet" as different states and never fabricates a card.
 
+### Honest stubs (Azure DevOps, Jira)
+
+`providers/azure.js` (host lane) and `boards/jira.js` (board lane) ship as **documented stubs**:
+their `collect()` throws `not implemented yet — built on the work machine`, and the board shows
+a quiet notice for that lane rather than any data. They exist so the contract is real from day
+one and so the machine that *does* have `az` / Jira access can implement them without touching
+anything else.
+
+### Implementing an adapter
+
+Each stub's file header documents the exact neutral items it must return (which `state`/`activity`
+maps to which column, and which `meta` fields the flags read), so implementing one is a
+self-contained job:
+
+1. Fill in `collect(ctx)` to return `NeutralItem[]` per the header — nothing else in the file, and
+   nothing outside it, needs to change.
+2. The lane is already wired: `provider`/`board` in config selects it through the whitelist in
+   `standup.js`. A brand-new host or tracker is one new file plus one whitelist line.
+3. Keep it read-only, keep secrets out of `config.example.json`, and add fixture tests for the
+   pure decoding helpers (the way `providers/github.js` tests `deriveCi` / `reviewState`).
+
 ## Files
 
 | file | role |
