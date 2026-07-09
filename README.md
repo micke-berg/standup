@@ -37,11 +37,20 @@ three columns without ever learning which system it came from.
 | lane | what it shows | status |
 | --- | --- | --- |
 | **Local git** (`lanes/git.js`) | your commits in the last 48h across configured repos + work-in-progress | **built** |
-| **Host / PR** (`providers/<host>.js`) | PRs you opened / merged / reviewed | GitHub and Azure DevOps plug in here |
+| **Host / PR** (`providers/github.js`) | PRs you opened / merged / reviewed, with CI + review state | **built (GitHub)** |
+| **Host / PR** (`providers/azure.js`) | same, on Azure DevOps | plugs into the same seam |
 | **Board / ticket** (`boards/<tracker>.js`) | tickets that moved / are in progress | Jira and Azure Boards plug in here |
 
 The local git lane needs no account and works offline, so standup is useful the moment you
 point it at your repos. The other lanes are opt-in.
+
+### GitHub host lane
+
+Set `"provider": "github"` and standup adds the PRs you touched: the ones you **merged** and
+**reviewed** land in Yesterday, your **open** PRs land in Today, and an open PR with **red CI**
+or one that has **waited past `flagReviewHours` for a review** is pulled into Flags. Auth is the
+`gh` CLI you already have — run `gh auth login` once; standup stores no token. Your identity is
+your gh login (override with `me`). It is read-only: standup never comments, reviews, or merges.
 
 ## Quickstart
 
