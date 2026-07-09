@@ -1,0 +1,38 @@
+{
+  "_comment_lanes": "standup has three lanes. The local git lane is always on once repoRoots is set (no account needed). The host lane (provider) and board lane (board) are opt-in.",
+
+  "_comment_git": "LOCAL GIT LANE — the only lane you need to be useful. repoRoots are directories scanned for git repos (a root that is itself a repo is included; otherwise its immediate subdirectories are scanned one level deep). gitAuthor matches commits by name or email; empty uses each repo's own git config user.email.",
+  "repoRoots": ["/Users/you/Developer"],
+  "gitAuthor": "",
+
+  "_comment_host": "HOST/PR LANE — set provider to pull in the PRs you opened/merged/reviewed. 'github' uses the gh CLI (run `gh auth login` once). 'azure' is a documented stub until it is built on a machine with az access. 'none' turns the lane off (the default: the git lane alone is already useful).",
+  "provider": "none",
+  "me": "",
+  "ghCliPath": "",
+
+  "_comment_azure": "For provider=azure (stub for now): repos live under an org/project. These are documented so a work-machine session can implement providers/azure.js against the same neutral contract.",
+  "azCliPath": "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.cmd",
+  "organization": "https://dev.azure.com/YOUR-ORG",
+  "project": "YOUR-PROJECT",
+
+  "_comment_board": "BOARD/TICKET LANE — set board to pull in tickets that moved or are in progress. 'jira' is a documented stub until it is built (Jira has no ubiquitous CLI; the adapter uses the REST API + an API token). 'none' turns the lane off.",
+  "board": "none",
+  "jiraBaseUrl": "https://YOUR-ORG.atlassian.net",
+  "jiraEmail": "you@example.com",
+  "jiraProject": "ABC",
+
+  "_comment_window": "lookbackHours is how far back 'since your last standup' reaches (48 covers a weekend Monday).",
+  "lookbackHours": 48,
+
+  "_comment_flags": "The third column. flagReviewHours: an open PR waiting this long for a review is flagged. flagStuckDays: an in-progress ticket unmoved this long is flagged.",
+  "flagReviewHours": 24,
+  "flagStuckDays": 3,
+
+  "_comment_ai": "OPT-IN AI WRITE-UP. Set claudeExe to your claude CLI path to enable the one-click 'write it up' button, which compresses the raw events into a few spoken-style bullets. Empty = the feature is off and the board is fully useful without it.",
+  "claudeExe": "",
+
+  "port": 7880,
+
+  "builtBy": "Your Name",
+  "builtByUrl": "https://your-site.example"
+}

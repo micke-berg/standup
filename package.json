@@ -1,0 +1,29 @@
+{
+  "name": "standup",
+  "version": "0.1.0",
+  "description": "Your 10:40 standup board: an on-demand, zero-dependency local view of your last 1-2 days across your local git, your PR host, and your issue tracker — three columns (Yesterday / Today / Flags), presenter-friendly, copy-as-text. Part of the watch-* family.",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "standup": "node standup.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "author": "Micke Berg (https://mickeberg.com)",
+  "keywords": [
+    "standup",
+    "daily-standup",
+    "git",
+    "pull-request",
+    "github",
+    "azure-devops",
+    "jira",
+    "dashboard",
+    "cli",
+    "zero-dependency"
+  ]
+}

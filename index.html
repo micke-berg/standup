@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>standup</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128203;</text></svg>" />
+<meta name="apple-mobile-web-app-title" content="Standup" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#131118" />
+<!-- Resolve the theme before first paint (no flash): stored choice, else the OS. Dark is the
+     no-JS fallback. This stays inline and render-blocking on purpose — moving it to app.js
+     (loaded at end of body) would paint the wrong theme first. applyTheme() in app.js
+     re-affirms this and keeps the meta/toggle in sync. -->
+<script>
+(function () {
+  try {
+    var p = localStorage.getItem("standup-theme");
+    var t = (p === "light" || p === "dark") ? p
+      : (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+})();
+</script>
+<link rel="stylesheet" href="app.css" />
+</head>
+<body>
+<div class="page">
+  <div class="glow"></div>
+  <div class="wrap">
+
+    <header class="head">
+      <div class="brand">
+        <span class="wordmark">Standup</span>
+        <span id="subtitle" class="subtitle"></span>
+      </div>
+      <div class="actions">
+        <button id="writeupBtn" class="btn" title="Write it up as spoken bullets" style="display:none;">✎ Write it up</button>
+        <button id="copyBtn" class="btn" title="Copy the standup as plain text">⧉ Copy as text</button>
+        <button id="refreshBtn" class="btn btn-primary" title="Rebuild from scratch">↻ Refresh</button>
+        <button id="themeBtn" class="btn btn-icon" title="Switch theme" aria-label="Switch theme">☀</button>
+      </div>
+    </header>
+
+    <section id="writeup" class="writeup">
+      <div class="writeup-head"><span>✎ Spoken write-up</span><span id="writeupState" class="mono" style="color:var(--faint);"></span></div>
+      <div id="writeupBody" class="writeup-body"></div>
+    </section>
+
+    <section id="lanes" class="lanes"></section>
+
+    <main id="board" class="board" aria-live="polite"></main>
+
+    <footer class="foot">
+      <div class="foot-left">
+        <span id="footDot" class="lane-dot"></span>
+        <span id="footLabel" class="foot-label"></span>
+      </div>
+      <span id="footBuilt" class="foot-built"></span>
+    </footer>
+
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
