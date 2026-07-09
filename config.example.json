@@ -5,8 +5,8 @@
   "repoRoots": ["/Users/you/Developer"],
   "gitAuthor": "",
 
-  "_comment_host": "HOST/PR LANE — set provider to pull in the PRs you opened/merged/reviewed. 'github' uses the gh CLI (run `gh auth login` once). 'azure' is a documented stub until it is built on a machine with az access. 'none' turns the lane off (the default: the git lane alone is already useful).",
-  "provider": "none",
+  "_comment_host": "HOST/PR LANE — set provider to pull in the PRs you opened/merged/reviewed. 'github' uses the gh CLI (run `gh auth login` once). 'azure' is a documented stub until it is built on a machine with az access. 'none' turns the lane off (the git lane alone is already useful).",
+  "provider": "github",
   "me": "",
   "ghCliPath": "",
 
